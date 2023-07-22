@@ -1,0 +1,24 @@
+.searchField {
+    width: 80%;
+    padding: 15px;
+    border-radius: 20px;
+    font-style: italic;
+    font-size: medium;
+    background-color: black;
+    color: cyan;
+}
+
+.searchField:focus {
+    outline: none;
+}
+
+.searchBtn {
+    padding: 10px;
+    border-radius: 20px;
+    margin-left: 10px;
+}
+
+.container {
+    margin-bottom: 20px;
+    text-align: center;
+}

@@ -1,0 +1,89 @@
+.container {
+    display: grid;
+    height: 90vh;
+    width: 90vw;
+    margin-left: 100px;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-gap: 20px;
+    text-align: center;
+    color: aqua;
+}
+
+.tempShow {
+    grid-column: 1 /span 2;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #2b2c2e;
+}
+
+.todayHighlights {
+    grid-column: 3 /span 5;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #2b2c2e;
+
+}
+
+.weatherDetails {
+    grid-column: 1 /span 5;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #2b2c2e;
+}
+
+.tempShow span {
+    font-size: 100px;
+}
+
+.todayHighlightsContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 0.5fr);
+    /* height: 200px; */
+    align-items: center;
+}
+
+.headingSection {
+    margin: 10px;
+    padding: 5px;
+    grid-column: 1/span 5;
+    border-bottom: 1px solid aquamarine;
+}
+
+.sunsetRise {
+    grid-column: 1 /span 2;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+    box-shadow: 4px 4px 20px black;
+
+}
+
+.humidityFeels {
+    margin: 10px;
+    grid-column: 3 /span 4;
+    grid-row: 2 /span 2;
+    border: 2px solid black;
+    border-radius: 20px;
+    box-shadow: 4px 4px 20px black;
+}
+
+.headings {
+    border-bottom: 1px solid aquamarine;
+    padding: 4px;
+    border-radius: 20px;
+}
+
+.temperatureDetails {
+    grid-column: 1 /span 2;
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+}
+
+.uvIndex {
+    border: 2px solid black;
+    border-radius: 20px;
+    margin: 10px;
+}
