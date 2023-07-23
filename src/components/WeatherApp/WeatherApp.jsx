@@ -11,33 +11,37 @@ import { convertData } from "../../service/convertData";
 const WeatherApp = () => {
   const [location, setLocation] = useState("");
   const [weatherInfo, setWeatherInfo] = useState({});
-  const [isFetching, setIsFetching] = useState(false);
+  const [isFetching, setIsFetching] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [geoLocation, setGeoLocation] = useState(true);
+  const [geoLocation, setGeoLocation] = useState(false);
 
   useEffect(() => {
     if (navigator.geolocation) {
-      setGeoLocation(false);
-      setIsFetching(true);
-      navigator.geolocation.getCurrentPosition((position) => {
-        convertData(position.coords.latitude, position.coords.longitude)
-          .then((val) => {
-            getData(val.address.state)
-              .then((val) => {
-                setWeatherInfo(val);
-                setLocation("");
-                setIsFetching(false);
-              })
-              .catch((error) => {
-                setIsFetching(false);
-                setIsError(true);
-              });
-          })
-          .catch((error) => {
-            setIsFetching(false);
-            setIsError(true);
-          });
-      });
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          convertData(position.coords.latitude, position.coords.longitude)
+            .then((val) => {
+              getData(val.address.state)
+                .then((val) => {
+                  setWeatherInfo(val);
+                  setLocation("");
+                  setIsFetching(false);
+                })
+                .catch((error) => {
+                  setIsFetching(false);
+                  setIsError(true);
+                });
+            })
+            .catch((error) => {
+              setIsFetching(false);
+              setIsError(true);
+            });
+        },
+        (error) => {
+          setIsFetching(false);
+          setGeoLocation(true);
+        }
+      );
     } else {
       setGeoLocation(true);
       setIsFetching(false);
@@ -49,6 +53,7 @@ const WeatherApp = () => {
   };
 
   const getWeatherInfo = () => {
+    setGeoLocation(false);
     setIsFetching(true);
     setIsError(false);
     getData(location)
