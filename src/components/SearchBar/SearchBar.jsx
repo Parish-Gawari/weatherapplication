@@ -8,6 +8,7 @@ const SearchBar = ({
   searchBtnHandler,
   inputValue,
   isDisable,
+  keyHandler,
 }) => {
   const onSearchChange = (e) => {
     onSearchChangeHandler(e.target.value);
@@ -23,6 +24,7 @@ const SearchBar = ({
         placeholder="Enter City or Country Name..."
         className={styles.searchField}
         onChange={onSearchChange}
+        onKeyUp={keyHandler}
       />
       <button
         className={styles.searchBtn}
