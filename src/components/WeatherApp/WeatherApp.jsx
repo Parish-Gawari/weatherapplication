@@ -7,6 +7,7 @@ import { getData } from "../../service/fetchData";
 
 import LoadingScreen from "../LoadingScreen/LoadingScreen";
 import { convertData } from "../../service/convertData";
+import { getGeoLocation } from "../../service/getGeoLocation";
 
 const WeatherApp = () => {
   const [location, setLocation] = useState("");
@@ -16,36 +17,30 @@ const WeatherApp = () => {
   const [geoLocation, setGeoLocation] = useState(false);
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (position) => {
-          convertData(position.coords.latitude, position.coords.longitude)
-            .then((val) => {
-              getData(val.address.state)
-                .then((val) => {
-                  setWeatherInfo(val);
-                  setLocation("");
-                  setIsFetching(false);
-                })
-                .catch((error) => {
-                  setIsFetching(false);
-                  setIsError(true);
-                });
-            })
-            .catch((error) => {
-              setIsFetching(false);
-              setIsError(true);
-            });
-        },
-        (error) => {
-          setIsFetching(false);
-          setGeoLocation(true);
-        }
-      );
-    } else {
-      setGeoLocation(true);
-      setIsFetching(false);
-    }
+    getGeoLocation()
+      .then((val) => {
+        convertData(val.coords.latitude, val.coords.longitude)
+          .then((val) => {
+            getData(val.address.state)
+              .then((val) => {
+                setWeatherInfo(val);
+                setLocation("");
+                setIsFetching(false);
+              })
+              .catch((error) => {
+                setIsFetching(false);
+                setIsError(true);
+              });
+          })
+          .catch((error) => {
+            setIsFetching(false);
+            setIsError(true);
+          });
+      })
+      .catch((error) => {
+        setIsFetching(false);
+        setGeoLocation(true);
+      });
   }, []);
 
   const onSearchChangeHandler = (e) => {
