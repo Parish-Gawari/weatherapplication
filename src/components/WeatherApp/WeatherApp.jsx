@@ -14,14 +14,13 @@ const WeatherApp = () => {
   const [weatherInfo, setWeatherInfo] = useState({});
   const [isFetching, setIsFetching] = useState(true);
   const [isError, setIsError] = useState(false);
-  const [geoLocation, setGeoLocation] = useState(false);
 
   useEffect(() => {
     getGeoLocation()
       .then((val) => {
         convertData(val.coords.latitude, val.coords.longitude)
           .then((val) => {
-            getData(val.address.state)
+            getData(val.address.city)
               .then((val) => {
                 setWeatherInfo(val);
                 setLocation("");
@@ -38,8 +37,16 @@ const WeatherApp = () => {
           });
       })
       .catch((error) => {
-        setIsFetching(false);
-        setGeoLocation(true);
+        getData("delhi")
+          .then((val) => {
+            setWeatherInfo(val);
+            setLocation("");
+            setIsFetching(false);
+          })
+          .catch((error) => {
+            setIsFetching(false);
+            setIsError(true);
+          });
       });
   }, []);
 
@@ -48,7 +55,6 @@ const WeatherApp = () => {
   };
 
   const getWeatherInfo = () => {
-    setGeoLocation(false);
     setIsFetching(true);
     setIsError(false);
     getData(location)
@@ -56,7 +62,6 @@ const WeatherApp = () => {
         setWeatherInfo(val);
         setLocation("");
         setIsFetching(false);
-        setGeoLocation(false);
       })
       .catch((error) => {
         console.error(error);
@@ -79,22 +84,15 @@ const WeatherApp = () => {
         keyHandler={keyHandler}
       />
 
-      {geoLocation && (
-        <LoadingScreen message="Location access was denied so enter location manually " />
+      {isError && (
+        <LoadingScreen message="Please Enter a Valid Country or City Name." />
       )}
-      {!geoLocation && (
+      {!isError && (
         <>
-          {isError && (
-            <LoadingScreen message="Please Enter a Valid Country or City Name." />
+          {isFetching && (
+            <LoadingScreen message="Please Wait While We Reterive Weather Details." />
           )}
-          {!isError && (
-            <>
-              {isFetching && (
-                <LoadingScreen message="Please Wait While We Reterive Weather Details." />
-              )}
-              {!isFetching && <WeatherDeatils weatherInfo={weatherInfo} />}
-            </>
-          )}
+          {!isFetching && <WeatherDeatils weatherInfo={weatherInfo} />}
         </>
       )}
     </>
