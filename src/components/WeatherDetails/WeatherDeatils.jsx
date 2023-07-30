@@ -6,10 +6,10 @@ import styles from "./WeatherDetails.module.css";
 import {
   FaSun,
   FaRegMoon,
-  FaTemperatureHigh,
-  FaTemperatureLow,
   FaMapLocationDot,
   FaCalendarDays,
+  FaTemperatureHigh,
+  FaTemperatureLow,
   FaWind,
   FaEye,
   FaCloudRain,
@@ -19,12 +19,16 @@ import { WiHumidity } from "react-icons/wi";
 import { GiSunRadiations } from "react-icons/gi";
 
 const WeatherDeatils = ({ weatherInfo }) => {
+  const icon = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/2de560da89d87de44e3ca2a6593a12c19c8346d3/SVG/2nd%20Set%20-%20Color/${weatherInfo.days[0].icon}.svg`;
   return (
     <div className={styles.container}>
       <div className={styles.tempShow}>
         <span>
           {weatherInfo.currentConditions.temp}
           <sup>&deg;C</sup>
+        </span>
+        <span>
+          <img src={icon} alt="" height="150px" width="150px" />
         </span>
         <p>{weatherInfo.currentConditions.conditions}</p>
         <hr />
