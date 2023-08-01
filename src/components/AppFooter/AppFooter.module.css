@@ -1,0 +1,33 @@
+.footer {
+    background: black;
+    color: aqua;
+    height: 50px;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    bottom: 0;
+    width: 100%;
+}
+
+.spanIcon {
+    margin-right: 10px;
+    text-align: center;
+    color: aqua;
+}
+
+.spanText {
+    margin-left: 10px;
+    text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+    .spanIcon {
+        margin-right: 10px;
+        text-align: center;
+    }
+
+    .spanText {
+        margin-left: 100px;
+        text-align: center;
+    }
+}
