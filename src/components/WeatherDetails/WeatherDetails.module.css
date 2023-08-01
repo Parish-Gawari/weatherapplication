@@ -8,6 +8,7 @@
     grid-gap: 20px;
     text-align: center;
     color: aqua;
+    overflow: hidden;
 }
 
 .tempShow {
@@ -30,17 +31,21 @@
     border: 2px solid black;
     border-radius: 20px;
     background-color: #2b2c2e;
+
 }
 
 .tempShow span {
     font-size: 100px;
 }
 
+.iconic img {
+    margin-left: 50px;
+}
+
 .todayHighlightsContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat(2, 0.5fr);
-    /* height: 200px; */
     align-items: center;
 }
 
@@ -87,4 +92,41 @@
     border: 2px solid black;
     border-radius: 20px;
     margin: 10px;
+}
+
+.HourDetails {
+    grid-column: 1 /span 7;
+    padding: 10px;
+    border: 2px solid black;
+    border-radius: 20px;
+    background-color: #2b2c2e;
+    cursor: grab;
+}
+
+.hourUpdates {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    border-right: 2px solid grey;
+    border-radius: 15px;
+    margin-top: 15px;
+    padding: 5px 20px;
+    align-items: center;
+    height: 120px;
+
+
+}
+
+.hour {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.condition {
+    padding: 0;
+    margin: 0;
+    font-size: 30px;
+    font-style: italic;
 }
