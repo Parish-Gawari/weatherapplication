@@ -21,7 +21,6 @@ import { WiHumidity } from "react-icons/wi";
 import { GiSunRadiations } from "react-icons/gi";
 
 const WeatherDeatils = ({ weatherInfo }) => {
-  console.log(weatherInfo);
   const icon = `https://raw.githubusercontent.com/visualcrossing/WeatherIcons/2de560da89d87de44e3ca2a6593a12c19c8346d3/SVG/2nd%20Set%20-%20Color/${weatherInfo.days[0].icon}.svg`;
   const hourly = weatherInfo.days[0].hours;
   const hourUpdates = hourly.map((value, index) => {

@@ -18,9 +18,11 @@ const WeatherApp = () => {
   useEffect(() => {
     getGeoLocation()
       .then((val) => {
+        console.log(val);
         convertData(val.coords.latitude, val.coords.longitude)
           .then((val) => {
-            getData(val.address.city)
+            console.log(val);
+            getData(val.address.county)
               .then((val) => {
                 setWeatherInfo(val);
                 setLocation("");
