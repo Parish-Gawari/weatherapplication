@@ -7,7 +7,7 @@ const AppFooter = () => {
     <footer className={styles.footer}>
       <span className={styles.spanIcon}>
         <a
-          href="https://github.com/Samael-24"
+          href="https://github.com/Parish-Gawari"
           target="_blank"
           style={{ color: "aqua" }}
         >
